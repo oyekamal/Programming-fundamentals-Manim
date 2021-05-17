@@ -7,3 +7,5 @@ for Installing Manim on Ubuntu
 
 
 for running file "manim circle.py SquareToCircle -p -ql"
+
+for animation "https://azarzadavila-manim.readthedocs.io/en/latest/animation.html"
