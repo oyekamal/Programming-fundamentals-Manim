@@ -1,0 +1,8 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/kamal/Documents/manim_work/Programming-fundamentals-Manim/intro/media/videos/variable/480p15/partial_movie_files/displayText/3163782288_2432241074_3988312716.mp4'
+file 'file:/home/kamal/Documents/manim_work/Programming-fundamentals-Manim/intro/media/videos/variable/480p15/partial_movie_files/displayText/3163782288_3278875420_2634694853.mp4'
+file 'file:/home/kamal/Documents/manim_work/Programming-fundamentals-Manim/intro/media/videos/variable/480p15/partial_movie_files/displayText/1495979052_2432241074_1261738119.mp4'
+file 'file:/home/kamal/Documents/manim_work/Programming-fundamentals-Manim/intro/media/videos/variable/480p15/partial_movie_files/displayText/1495979052_3109150433_1994705350.mp4'
+file 'file:/home/kamal/Documents/manim_work/Programming-fundamentals-Manim/intro/media/videos/variable/480p15/partial_movie_files/displayText/1495979052_2432241074_4181829021.mp4'
+file 'file:/home/kamal/Documents/manim_work/Programming-fundamentals-Manim/intro/media/videos/variable/480p15/partial_movie_files/displayText/1495979052_806192456_2610679023.mp4'
+file 'file:/home/kamal/Documents/manim_work/Programming-fundamentals-Manim/intro/media/videos/variable/480p15/partial_movie_files/displayText/1495979052_1197037766_1524379641.mp4'
