@@ -10,7 +10,12 @@ class displayText(Scene):
 
         square = Square()
 
+        vg = VGroup()
         # square.next_to(veriable_x, DOWN)
+
+        START = (0,2.5,0)
+        END =   (0,-2.5,0)
+        line = Line(START,END)
 
         # Displaying text
         self.wait(1)
@@ -28,4 +33,18 @@ class displayText(Scene):
         square.next_to(veriable_x, DOWN)
         # square.shift(2 * DOWN)
         self.play(ShowCreation(square))
+        self.play(Rotate(square, PI/2))
+        vg.add(veriable_x)
+        vg.add(square)
+        self.play(ScaleInPlace(vg, 0.5))
+
+        vg.generate_target()
+        vg.target.move_to(3*LEFT)
+        self.play(MoveToTarget(vg))
+
+        self.play(ShowCreation(line))
+
+
+        
+
         self.wait(2)
