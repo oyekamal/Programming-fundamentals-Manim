@@ -2,5 +2,8 @@
 Programming fundamentals Manim Tutorial. 
 
 for Installing Manim on Ubuntu 
-"https://manim.readthedocs.io/en/latest/installation/linux.html"
+"https://docs.manim.community/en/stable/installation/linux.html"
 
+
+
+for running file "manim circle.py SquareToCircle -p -ql"
