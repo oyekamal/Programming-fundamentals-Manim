@@ -6,6 +6,7 @@ for Installing Manim on Ubuntu
 
 
 
-for running file "manim circle.py SquareToCircle -p -ql"
+for running file "manim file_name.py Class_name -p -ql"
+for example "manim circle.py SquareToCircle -p -ql"
 
 for animation "https://azarzadavila-manim.readthedocs.io/en/latest/animation.html"
