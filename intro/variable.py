@@ -6,12 +6,16 @@ class displayText(Scene):
         # Create Text objects
         variable = Text('Variable')
         box = Text("lets create a Box name 'x'")
-        veriable_x = Text('x', color=YELLOW_A)
+        veriable_x = Text('x', color=YELLOW)
+        
 
         memory = Text("Memory", color=BLUE_E)
 
         code = Text("Code", color=BLUE_E)
 
+        two = Text("2",color=RED)
+        two.move_to(np.array([-1.5,2,0]))
+        # two.move_to(2*UP)
         square = Square()
 
         vg = VGroup()
@@ -19,8 +23,8 @@ class displayText(Scene):
         code.next_to(memory, 5*RIGHT)
 
         code_example = Tex("x"," = ", "2")
-
-        
+        code_example[0].set_color(YELLOW)
+        code_example[2].set_color(RED)
 
         START = (0,2.5,0)
         END =   (0,-2.5,0)
@@ -43,6 +47,8 @@ class displayText(Scene):
         # square.shift(2 * DOWN)
         self.play(ShowCreation(square))
         self.play(Rotate(square, PI/2))
+        # self.play(Rotating(square))
+
         vg.add(veriable_x)
         vg.add(square)
         self.play(ScaleInPlace(vg, 0.7))
@@ -60,11 +66,42 @@ class displayText(Scene):
 
         code_example.next_to(vg, 20*RIGHT)
 
+        self.play(Write(two))
+
+
+        curvedArrow=CurvedArrow(start_point=np.array([-1.8,2,0]),end_point=np.array([-3,0.6,0]))
+        self.play(ShowCreation(curvedArrow))
+        self.wait()
+
+
         self.play(Write(code_example[0]))
         # b1 = Brace(code_example[0])
-        brace = Brace(code_example[0], direction=DOWN)
-        b1text = brace.get_text("Variable name").scale(0.7)
-        self.add(brace,b1text)
+        brace_x = Brace(code_example[0], direction=DOWN)
+        b1text_x = brace_x.get_text("Variable name").scale(0.7)
+        
+        self.play(Write(code_example[1]))
+
+        brace_ = Brace(code_example[1], direction=UP)
+        b1text_ = brace_.get_text("assignmet").scale(0.7).set_color(GREEN)
+
+
+        brace_value = Brace(code_example[2], direction=RIGHT)
+        b1text_value = brace_value.get_text("value").scale(0.7).set_color(RED)
+
+
+
+        self.play(ShowCreation(brace_x),Write(b1text_x), ShowCreation(brace_),Write(b1text_))
+
+        self.play(Write(code_example[2]))
+
+        self.play(ShowCreation(brace_value),Write(b1text_value))
+
+
+        self.play(FadeOutAndShift(b1text_x, DOWN),FadeOutAndShift(brace_x, DOWN))
+        self.remove(b1text_x, brace_x)
+        
+        
+
 
 
         self.wait(2)
