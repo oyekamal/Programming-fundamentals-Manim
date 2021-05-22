@@ -14,6 +14,7 @@ class displayText(Scene):
         code = Text("Code", color=BLUE_E)
 
         two = Text("2",color=RED)
+        five = Text("5",color=RED)
         two.move_to(np.array([-1.5,2,0]))
         # two.move_to(2*UP)
         square = Square()
@@ -22,7 +23,7 @@ class displayText(Scene):
         memory.next_to(veriable_x, 2*UP)
         code.next_to(memory, 5*RIGHT)
 
-        code_example = Tex("x"," = ", "2")
+        code_example = Tex("x"," = ", "2", " + ", "3")
         code_example[0].set_color(YELLOW)
         code_example[2].set_color(RED)
 
@@ -97,11 +98,23 @@ class displayText(Scene):
         self.play(ShowCreation(brace_value),Write(b1text_value))
 
 
-        self.play(FadeOutAndShift(b1text_x, DOWN),FadeOutAndShift(brace_x, DOWN))
-        self.remove(b1text_x, brace_x)
+        self.play(FadeOutAndShift(b1text_x, DOWN),FadeOutAndShift(brace_x, DOWN),
+                  FadeOutAndShift(b1text_value, RIGHT),FadeOutAndShift(brace_value, RIGHT),
+                  FadeOutAndShift(b1text_, UP),FadeOutAndShift(brace_, UP),)
+        self.remove(b1text_x, brace_x, b1text_, brace_, b1text_value, brace_value)
         
         
-
-
+        self.play(FadeOut(curvedArrow))
+        
+        two.generate_target()
+        two.target.move_to(square.get_center())
+        self.play(MoveToTarget(two))
+        
+        five.move_to(square.get_center())
+        
+        
+        self.play(Write(code_example[3]),Write(code_example[4]))
+        
+        self.play(ReplacementTransform(two, five))
 
         self.wait(2)
