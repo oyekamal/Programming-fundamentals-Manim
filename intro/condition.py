@@ -31,6 +31,10 @@ class Condition(Scene):
         door1 = EmojiSVGMobject('🚪').scale(1.2).move_to(LEFT*3)
         door2 = EmojiSVGMobject('🚪').scale(1.2)
         door3 = EmojiSVGMobject('🚪').scale(1.2).move_to(RIGHT*3)
+
+        cloth1 = EmojiSVGMobject('👚').scale(0.5).move_to(LEFT*3 + DOWN*2)
+        cloth2 = EmojiSVGMobject('🥻').scale(0.5).move_to(DOWN*2)
+        cloth3 = EmojiSVGMobject('👗').scale(0.5).move_to(RIGHT*3 + DOWN*2)
         # t = Text('OpenMoji (SVG)').scale(2)
         # Group(em, t).arrange(DOWN).scale(1.4)
 
@@ -64,7 +68,13 @@ class Condition(Scene):
         self.play(key.animate.move_to(LEFT*2))
         self.play(Indicate(key, color=RED))
         self.wait()
-        
+
         self.play(key.animate.move_to(RIGHT))
-        self.play(Indicate(key, color=GREEN))
+        self.play(Indicate(key, color=GREEN), FocusOn(door2))
+
+        self.wait()
+        self.play(Uncreate(VGroup(door3, door1, key)))
+        self.play(FadeIn(cloth1, target_position=door2.get_center()),
+                  FadeIn(cloth2, target_position=door2.get_center()),
+                  FadeIn(cloth3, target_position=door2.get_center()))
         self.wait()
