@@ -61,6 +61,7 @@ class Variable(Scene):
 
         self.play(Flash(num_box_name, flash_radius=0.7), rate_time=2)
         self.play(Flash(nam_box_name, flash_radius=1), rate_time=2)
+        # FocusOn,Indicate,
 
 
 class Variable1(Scene):
@@ -73,6 +74,8 @@ class Variable1(Scene):
         five = Text("5", color=RED)
 
         code_example = Tex("x", " = ", "2", " + ", "3").move_to(RIGHT*3)
+        code_example.set_color_by_tex('x', YELLOW)
+        code_example.set_color_by_tex('2', RED)
 
         square = always_redraw(
             lambda: Square().next_to(veriable_x, DOWN, buff=0.5))
@@ -97,3 +100,39 @@ class Variable1(Scene):
         self.play(Write(two),  Write(code_example[2]))
         self.wait()
         self.play(Create(curved))
+        self.wait(1)
+        self.play(two.animate.move_to(square.get_center()),
+                  Write(code_example[1]), FadeOut(curved))
+        self.wait()
+
+        brace_ = Brace(code_example[1], direction=UP)
+        b1text_ = brace_.get_text("assignmet").scale(0.7).set_color(GREEN)
+
+        self.play(Create(brace_), Write(b1text_,))
+
+        brace_value = Brace(code_example[2], direction=RIGHT)
+        b1text_value = brace_value.get_text("value").scale(0.7).set_color(RED)
+
+        self.play(Create(brace_value), Write(b1text_value))
+
+        self.wait(2)
+
+        brace_x = Brace(code_example[0], direction=DOWN)
+        b1text_x = brace_x.get_text("Variable name").scale(0.7)
+
+        self.play(Create(brace_x), Write(b1text_x))
+
+        self.play(FadeOut(VGroup(b1text_, brace_), shift=UP))
+
+        self.play(FadeOut(VGroup(b1text_value, brace_value), shift=RIGHT))
+
+        self.play(FadeOut(VGroup(b1text_x, brace_x), shift=DOWN))
+
+        self.wait(2)
+
+        self.play(Write(code_example[3]), Write(code_example[4]))
+        self.wait()
+
+        five.move_to(square.get_center())
+        self.play(ReplacementTransform(two, five))
+        self.wait()
