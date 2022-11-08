@@ -24,6 +24,7 @@ class EmojiSVGMobject(SVGMobject):
 class Condition(Scene):
     def construct(self):
         condition = Tex('Condition ', ' / ', 'if else')
+        programming = Tex('In Programming')
         condition.set_color_by_tex('if else', YELLOW)
 
         # self.camera.background_color = GREEN_A
@@ -35,8 +36,32 @@ class Condition(Scene):
         cloth1 = EmojiSVGMobject('👚').scale(0.5).move_to(LEFT*3 + DOWN*2)
         cloth2 = EmojiSVGMobject('🥻').scale(0.5).move_to(DOWN*2)
         cloth3 = EmojiSVGMobject('👗').scale(0.5).move_to(RIGHT*3 + DOWN*2)
-        # t = Text('OpenMoji (SVG)').scale(2)
-        # Group(em, t).arrange(DOWN).scale(1.4)
+
+        abc = Tex('A', 'B', 'C')
+        abc[0].move_to(LEFT*3)
+        abc[2].move_to(RIGHT*3)
+        B = Text('B').move_to(DOWN*2)
+        box1 = always_redraw(lambda: SurroundingRectangle(
+            abc[0], color=BLUE, fill_opacity=0.2, fill_color=BLUE_D, buff=1))
+
+        box2 = always_redraw(lambda: SurroundingRectangle(
+            abc[1], color=YELLOW, fill_opacity=0.2, fill_color=BLUE_D, buff=1))
+
+        box3 = always_redraw(lambda: SurroundingRectangle(
+            abc[2], color=GREEN, fill_opacity=0.2, fill_color=BLUE_D, buff=1))
+
+        condition1 = always_redraw(lambda: Tex(
+            "if A==B ", color=BLUE).next_to(box1, UP, buff=0.5))
+
+        condition2 = always_redraw(lambda: Tex(
+            "if B==B ", color=YELLOW).next_to(box2, UP, buff=0.5))
+
+        condition3 = always_redraw(lambda: Tex(
+            "if C==B ", color=GREEN).next_to(box3, UP, buff=0.5))
+
+        code = '''print('found B')'''
+        rendered_code = Code(code=code, tab_width=4, background="window", style='one-dark',
+                             language="Python", font="Monospace")
 
         self.play(Write(condition))
         self.wait()
@@ -77,4 +102,20 @@ class Condition(Scene):
         self.play(FadeIn(cloth1, target_position=door2.get_center()),
                   FadeIn(cloth2, target_position=door2.get_center()),
                   FadeIn(cloth3, target_position=door2.get_center()))
+
+        self.play(FadeOut(VGroup(cloth2, cloth1, cloth3), shift=DOWN))
+        self.play(Uncreate(door2))
+        self.play(FadeIn(programming))
+        self.play(FadeOut(programming))
+        self.play(Create(VGroup(
+            abc[0], box1, abc[1], box2, abc[2], box3, B, condition1, condition2, condition3)))
+
+        self.play(B.animate.move_to(DOWN*2 + LEFT*3))
+        self.play(Indicate(VGroup(B, condition1), color=RED))
+        self.play(B.animate.move_to(DOWN*2))
+        self.play(Indicate(VGroup(B, condition2), color=GREEN))
+        self.play(
+            Uncreate(VGroup(abc[0], box1, abc[2], box3, B, condition1, condition3)))
+        self.play(abc[1].animate.move_to(LEFT*4))
+        self.play(FadeIn(rendered_code, target_position=box2.get_center()))
         self.wait()

@@ -72,11 +72,11 @@ class Updater(Scene):
 
 class ValueTrackers(Scene):
     def construct(self):
-        
+
         k = ValueTracker(10.3)
-        
+
         num = always_redraw(lambda: DecimalNumber().set_value(k.get_value()))
-        
+
         self.play(FadeIn(num))
 
         self.wait(1)
@@ -84,6 +84,21 @@ class ValueTrackers(Scene):
         self.play(k.animate.set_value(0), run_time=4, rate_func=linear)
         self.wait(1)
 
+
+class CodeFromString(Scene):
+    def construct(self):
+        code = '''from manim import Scene, Square
+
+class FadeInSquare(Scene):
+    def construct(self):
+        s = Square()
+        self.play(FadeIn(s))
+        self.play(s.animate.scale(2))
+        self.wait()
+'''
+        rendered_code = Code(code=code, tab_width=4, background="ubuntu", background_stroke_color='#FFFFFF',
+                             language="Python", font="Monospace", style='one-dark')
+        self.add(rendered_code)
 # # %%manim -v WARNING --disable_caching -qm -r400,400 Example1
 # from manim import *
 # from PIL import Image
