@@ -66,6 +66,7 @@ class Intro(Scene):
 class Intro1(Scene):
     def construct(self):
 
+        start = Text("Start Coding", gradient=(RED, GREEN, BLUE)).scale(2)
         t2gindices = Text(
             'Programming',
             t2g={
@@ -115,9 +116,12 @@ class Intro1(Scene):
 
         self.play(Create(VGroup(t2gindices, t2gwords), run_time=3))
 
-        self.wait(7)
+        self.play(Wiggle(t2gindices), run_time=2)
+        self.play(Wiggle(t2gwords), run_time=2)
 
-        self.play(FadeOut(VGroup(t2gindices, t2gwords)))
+        self.wait(3)
+
+        self.play(FadeOut(VGroup(t2gindices, t2gwords)), run_time=4)
 
         shapes = VGroup(pi, circle, square)
         self.play(SpiralIn(shapes), run_time=2)
@@ -132,13 +136,13 @@ class Intro1(Scene):
                   FadeOut(VGroup(rectangle, square)))
         self.wait(1)
 
-        self.play(Write(theory_concept[0]), FadeIn(cross))
+        self.play(Write(theory_concept[0]), FadeIn(cross), run_time=1)
 
         self.wait(2)
 
         self.play(ReplacementTransform(
             theory_concept[0], theory_concept[1]), FadeOut(cross))
-        self.wait(1)
+        # self.wait(1)
         self.play(Create(concept_box))
         self.play((Indicate(concept_box)))
         self.wait(1)
@@ -148,5 +152,6 @@ class Intro1(Scene):
         self.play(FadeOut(python))
         self.wait()
         self.play(Write(list_of_content), run_time=6)
-        self.wait(3)
-
+        self.wait(4)
+        self.play(ReplacementTransform(list_of_content, start), run_time=3)
+        self.wait(5)
