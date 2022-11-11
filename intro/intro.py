@@ -155,3 +155,6 @@ class Intro1(Scene):
         self.wait(4)
         self.play(ReplacementTransform(list_of_content, start), run_time=3)
         self.wait(5)
+
+
+# urdu time aedd
