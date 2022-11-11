@@ -14,3 +14,7 @@ for animation "https://azarzadavila-manim.readthedocs.io/en/latest/animation.htm
 
 docker
 docker run -it -p 8888:8888 manimcommunity/manim jupyter lab --ip=0.0.0.0
+
+running the docker cell 
+%%manim -v WARNING Intro1
+
